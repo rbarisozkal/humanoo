@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Edit, Trash2, AlertTriangle } from "lucide-react";
 
-import { useDeleteGrocery } from "../hooks";
+import { useDeleteGrocery } from "../hooks/useDeleteGrocery";
 import {
   AlertDialog,
   AlertDialogAction,

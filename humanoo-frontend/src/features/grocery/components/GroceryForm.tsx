@@ -20,7 +20,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { LoadingSpinner } from "@/components/custom/LoadingSpinner";
-import { useCreateGrocery, useUpdateGrocery } from "../hooks";
+import { useCreateGrocery } from "../hooks/useCreateGrocery";
+import { useUpdateGrocery } from "../hooks/useUpdateGrocery";
 import { GroceryCategories, GroceryUnits } from "../constants";
 import { Grocery } from "../types";
 

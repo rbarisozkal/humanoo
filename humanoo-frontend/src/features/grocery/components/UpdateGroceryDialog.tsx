@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { GroceryForm } from "./GroceryForm";
 import { LoadingSpinner } from "@/components/custom/LoadingSpinner";
-import { useGrocery } from "../hooks";
+import { useGrocery } from "../hooks/useGrocery";
 
 interface UpdateGroceryDialogProps {
   open: boolean;
