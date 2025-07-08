@@ -12,13 +12,11 @@ import { GroceryFilters } from "../types";
 import { useRouter } from "next/navigation";
 
 interface GroceryListProps {
-  onEditGrocery: (id: number) => void;
   filters: GroceryFilters;
   searchQuery: string;
 }
 
 export const GroceryList = ({
-  onEditGrocery,
   filters,
   searchQuery,
 }: GroceryListProps) => {
@@ -92,7 +90,7 @@ export const GroceryList = ({
         <GroceryCard
           key={grocery.id}
           grocery={grocery}
-          onEdit={() => onEditGrocery(grocery.id)}
+
         />
       ))}
     </div>

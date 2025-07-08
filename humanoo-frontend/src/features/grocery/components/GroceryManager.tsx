@@ -9,15 +9,10 @@ import { useLowStockGroceries } from "../hooks/useLowStockGroceries";
 import { GrocerySearchFilter } from "./GrocerySearchFilter";
 import { GroceryList } from "./GroceryList";
 import { CreateGroceryDialog } from "./CreateGroceryDialog";
-import { UpdateGroceryDialog } from "./UpdateGroceryDialog";
 import { GroceryFilters } from "../types";
 
 export const GroceryManager = () => {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
-  const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState(false);
-  const [selectedGroceryId, setSelectedGroceryId] = useState<number | null>(
-    null
-  );
 
   const [filters, setFilters] = useState<GroceryFilters>({});
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,11 +22,6 @@ export const GroceryManager = () => {
   };
 
   const { data: lowStockItems } = useLowStockGroceries();
-
-  function handleEditGrocery(id: number) {
-    setSelectedGroceryId(id);
-    setIsUpdateDialogOpen(true);
-  }
 
   return (
     <div className="container mx-auto py-8 space-y-6">
@@ -84,21 +74,13 @@ export const GroceryManager = () => {
         setSearchQuery={setSearchQuery}
         clearFilters={clearFilters}
       />
-
       <GroceryList
-        onEditGrocery={handleEditGrocery}
         filters={filters}
         searchQuery={searchQuery}
       />
-
       <CreateGroceryDialog
         open={isCreateDialogOpen}
         onOpenChange={setIsCreateDialogOpen}
-      />
-      <UpdateGroceryDialog
-        open={isUpdateDialogOpen}
-        onOpenChange={setIsUpdateDialogOpen}
-        groceryId={selectedGroceryId}
       />
     </div>
   );

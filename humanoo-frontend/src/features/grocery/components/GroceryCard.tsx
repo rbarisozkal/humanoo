@@ -19,15 +19,16 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { LOW_STOCK_THRESHOLD } from "../constants";
+import UpdateGroceryDialog from "@/features/grocery/components/UpdateGroceryDialog";
+import {useState} from "react";
 
 interface GroceryCardProps {
   grocery: Grocery;
-  onEdit: () => void;
 }
 
-export function GroceryCard({ grocery, onEdit }: GroceryCardProps) {
+export function GroceryCard({ grocery }: GroceryCardProps) {
   const { mutation: deleteGrocery } = useDeleteGrocery();
-
+  const [isEditing, setIsEditing] = useState(false);
   const isLowStock = grocery.quantity <= LOW_STOCK_THRESHOLD;
 
   const handleDelete = () => {
@@ -35,6 +36,7 @@ export function GroceryCard({ grocery, onEdit }: GroceryCardProps) {
   };
 
   return (
+      <>
     <Card className="h-full">
       <CardHeader className="pb-4">
         <div className="flex items-start justify-between">
@@ -43,7 +45,7 @@ export function GroceryCard({ grocery, onEdit }: GroceryCardProps) {
             <Button
               variant="ghost"
               size="sm"
-              onClick={onEdit}
+              onClick={()=>setIsEditing(true)}
               className="h-8 w-8 p-0"
             >
               <Edit className="h-4 w-4" />
@@ -110,5 +112,11 @@ export function GroceryCard({ grocery, onEdit }: GroceryCardProps) {
         </div>
       </CardContent>
     </Card>
+      <UpdateGroceryDialog
+        open={isEditing}
+        onOpenChange={setIsEditing}
+        groceryId={grocery.id}
+    />
+  </>
   );
 }
